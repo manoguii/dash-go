@@ -15,10 +15,17 @@ import {
   Th,
   Thead,
   Tr,
+  useBreakpointValue,
 } from '@chakra-ui/react'
-import { RiAddLine, RiPencilLine } from 'react-icons/ri'
+import Link from 'next/link'
+import { RiAddLine } from 'react-icons/ri'
 
 export default function UsersList() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  })
+
   return (
     <Box>
       <Header />
@@ -32,17 +39,19 @@ export default function UsersList() {
               Usuarios
             </Heading>
 
-            <Button
-              as="a"
-              cursor={'pointer'}
-              size="sma"
-              p="2"
-              fontSize="sm"
-              colorScheme="pink"
-              leftIcon={<Icon as={RiAddLine} fontSize="20" />}
-            >
-              Criar novo
-            </Button>
+            <Link href={'/users/create'} passHref>
+              <Button
+                as="a"
+                cursor={'pointer'}
+                size="sma"
+                p="2"
+                fontSize="sm"
+                colorScheme="pink"
+                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+              >
+                Criar novo
+              </Button>
+            </Link>
           </Flex>
 
           <Table colorScheme="blackAlpha">
@@ -52,13 +61,12 @@ export default function UsersList() {
                   <Checkbox colorScheme={'pink'} />
                 </Th>
                 <Th>Usuario</Th>
-                <Th>Data de cadastro</Th>
-                <Th width="8"></Th>
+                {isWideVersion && <Th>Data de cadastro</Th>}
               </Tr>
             </Thead>
             <Tbody>
               <Tr>
-                <Td px="6">
+                <Td px={['4', '4', '6']}>
                   <Checkbox colorScheme={'pink'} />
                 </Td>
                 <Td>
@@ -69,23 +77,10 @@ export default function UsersList() {
                     </Text>
                   </Box>
                 </Td>
-                <Td>20 de fevereiro, 2000</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    cursor={'pointer'}
-                    size="sma"
-                    p="2"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
+                {isWideVersion && <Td>20 de fevereiro, 2000</Td>}
               </Tr>
               <Tr>
-                <Td px="6">
+                <Td px={['4', '4', '6']}>
                   <Checkbox colorScheme={'pink'} />
                 </Td>
                 <Td>
@@ -96,23 +91,10 @@ export default function UsersList() {
                     </Text>
                   </Box>
                 </Td>
-                <Td>20 de fevereiro, 2000</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    cursor={'pointer'}
-                    size="sma"
-                    p="2"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
+                {isWideVersion && <Td>20 de fevereiro, 2000</Td>}
               </Tr>
               <Tr>
-                <Td px="6">
+                <Td px={['4', '4', '6']}>
                   <Checkbox colorScheme={'pink'} />
                 </Td>
                 <Td>
@@ -123,20 +105,7 @@ export default function UsersList() {
                     </Text>
                   </Box>
                 </Td>
-                <Td>20 de fevereiro, 2000</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    cursor={'pointer'}
-                    size="sma"
-                    p="2"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                  >
-                    Editar
-                  </Button>
-                </Td>
+                {isWideVersion && <Td>20 de fevereiro, 2000</Td>}
               </Tr>
             </Tbody>
           </Table>
