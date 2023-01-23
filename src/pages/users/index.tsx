@@ -21,9 +21,12 @@ import { Sidebar } from '@/components/sidebar'
 import { useUsers } from '@/hooks/useUsers'
 import Link from 'next/link'
 import { RiAddLine } from 'react-icons/ri'
+import { useState } from 'react'
 
 export default function UsersList() {
-  const { data, isLoading, isFetching, error } = useUsers()
+  const [page, setPage] = useState<number>(1)
+
+  const { data, isLoading, isFetching, error } = useUsers(page)
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -83,7 +86,7 @@ export default function UsersList() {
                 </Thead>
                 <Tbody>
                   {data &&
-                    data.map((user: any) => {
+                    data.users.map((user: any) => {
                       return (
                         <Tr key={user.id}>
                           <Td px={['4', '4', '6']}>
@@ -104,7 +107,11 @@ export default function UsersList() {
                 </Tbody>
               </Table>
 
-              <Pagination />
+              <Pagination
+                totalCountOfRegisters={data?.totalCount as number}
+                currentPage={page}
+                onPageChange={setPage}
+              />
             </>
           )}
         </Box>
