@@ -1,11 +1,11 @@
+import { ElementType } from 'react'
+import { ActiveLink } from '../activeLink'
 import {
   Link as ChakraLink,
   Text,
   Icon,
   LinkProps as ChakraLinkProps,
 } from '@chakra-ui/react'
-import { ElementType } from 'react'
-import { ActiveLink } from '../activeLink'
 
 interface NavLinkProps extends ChakraLinkProps {
   icon: ElementType
