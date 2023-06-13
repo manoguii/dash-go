@@ -38,7 +38,7 @@ export default function UsersList() {
 
   async function handlePrefetchUser(userId: string) {
     await queryClient.prefetchQuery(
-      ['user', userId],
+      ['user', { prefetchUser: userId }],
       async () => {
         const response = await api.get(`/api/users/${userId}`)
 
@@ -87,7 +87,7 @@ export default function UsersList() {
             </Flex>
           ) : error ? (
             <Flex justify="center">
-              <Text>Falha ao obter dados do usuario</Text>
+              <Text>Falha ao obter dados do usuário</Text>
             </Flex>
           ) : (
             <>
@@ -97,7 +97,7 @@ export default function UsersList() {
                     <Th px="6" color={'gray.300'} width="8">
                       <Checkbox colorScheme={'pink'} />
                     </Th>
-                    <Th>Usuario</Th>
+                    <Th>Usuário</Th>
                     {isWideVersion && <Th>Data de cadastro</Th>}
                   </Tr>
                 </Thead>

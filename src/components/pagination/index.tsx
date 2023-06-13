@@ -9,12 +9,7 @@ interface PaginationProps {
   onPageChange?: (page: number) => void
 }
 
-const siblingsCount = 2
-
-//  generatePagesArray(2, 5)
-//  [2 + 0 + 1  ,  2 + 1 + 1  , 2 + 2 + 1]
-//   2   i   5     2   i   5    2   i   5
-//  [3, 4, 5] -> pages
+const siblingsCount = 1
 
 function generatePagesArray(from: number, to: number) {
   return [...new Array(to - from)]
@@ -30,7 +25,10 @@ export function Pagination({
   registerPerPage = 10,
   onPageChange,
 }: PaginationProps) {
-  const lastPage = Math.floor(totalCountOfRegisters / registerPerPage)
+
+  const lastPage = Math.ceil(totalCountOfRegisters / registerPerPage)
+
+  console.log('lastPage =>', lastPage)
 
   const previousPage =
     currentPage > 1

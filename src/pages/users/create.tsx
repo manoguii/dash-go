@@ -24,16 +24,16 @@ interface CreateUserFormData {
   email: string
   name: string
   password: string
-  password_confirmattion: string
+  password_confirmation: string
 }
 
 const signInFormSchema = yup.object().shape({
   name: yup.string().required(),
   email: yup.string().required().email(),
   password: yup.string().required('A senha e obrigatoria').min(6),
-  password_confirmattion: yup
+  password_confirmation: yup
     .string()
-    .oneOf([null, yup.ref('password')], 'As senhas devem ser iguais'),
+    .oneOf([undefined, yup.ref('password')], 'As senhas devem ser iguais'),
 })
 
 export default function CreateUser() {
@@ -83,7 +83,7 @@ export default function CreateUser() {
           p={['6', '8']}
         >
           <Heading size={'lg'} fontWeight="normal">
-            Criar usuario
+            Criar usuário
           </Heading>
 
           <Divider my="6" borderColor={'gray.700'} />
@@ -106,8 +106,8 @@ export default function CreateUser() {
                 isRequired
                 type="password"
                 label="Confirma senha"
-                error={formState.errors.password_confirmattion}
-                {...register('password_confirmattion')}
+                error={formState.errors.password_confirmation}
+                {...register('password_confirmation')}
               />
             </SimpleGrid>
           </VStack>
