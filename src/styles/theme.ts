@@ -2,10 +2,12 @@ import { extendTheme } from '@chakra-ui/react'
 
 export const theme = extendTheme({
   styles: {
-    body: {
-      bg: 'gray.900',
-      color: 'gray.50',
-    },
+    global: () => ({
+      'html, body': {
+        bg: '#181B23',
+        color: '#EEEEF2',
+      },
+    }),
   },
   fonts: {
     heading: 'Roboto',
